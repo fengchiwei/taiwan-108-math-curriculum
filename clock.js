@@ -10,15 +10,22 @@ const TIME_ZONES = [
 ];
 
 function createClockCard({ city, timeZone }) {
-  const card = document.createElement('article');
+  const card = document.createElement('li');
   card.className = 'clock-card';
-  card.dataset.timeZone = timeZone;
-  card.innerHTML = `
-    <h2>${city}</h2>
-    <p class="clock-timezone">${timeZone}</p>
-    <p class="clock-date" data-role="date">--</p>
-    <p class="clock-time" data-role="time">--:--:--</p>
-  `;
+  const title = document.createElement('h2');
+  title.textContent = city;
+  const zoneText = document.createElement('p');
+  zoneText.className = 'clock-timezone';
+  zoneText.textContent = timeZone;
+  const dateNode = document.createElement('p');
+  dateNode.className = 'clock-date';
+  dateNode.dataset.role = 'date';
+  dateNode.textContent = '--';
+  const timeNode = document.createElement('p');
+  timeNode.className = 'clock-time';
+  timeNode.dataset.role = 'time';
+  timeNode.textContent = '--:--:--';
+  card.append(title, zoneText, dateNode, timeNode);
   return card;
 }
 
@@ -63,4 +70,12 @@ const clockItems = TIME_ZONES.map((item) => {
 });
 
 updateClocks();
-setInterval(updateClocks, 1000);
+function scheduleNextUpdate() {
+  const delay = 1000 - (Date.now() % 1000);
+  setTimeout(() => {
+    updateClocks();
+    scheduleNextUpdate();
+  }, delay);
+}
+
+scheduleNextUpdate();
