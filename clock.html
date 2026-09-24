@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="多時區數位時鐘，顯示台北、紐約、倫敦、東京、雪梨目前日期與時間。" />
+  <title>多時區數位時鐘｜臺灣 108 數學課綱學習活動設計</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">數</span><span>數學課綱與教學設計平台</span></a>
+    <nav class="top-nav" aria-label="時鐘頁導覽">
+      <a href="index.html">回到首頁</a>
+      <a href="#world-clocks">多時區時鐘</a>
+    </nav>
+  </header>
+
+  <main class="main clock-main" id="world-clocks">
+    <section class="intro section-pad clock-intro">
+      <div>
+        <p class="eyebrow">生活中的時間與時區</p>
+        <h1>多時區數位時鐘</h1>
+        <p class="lead">同步查看不同城市的目前日期與時間（24 小時制，含秒）。</p>
+      </div>
+      <a class="button primary" href="index.html">返回主網站</a>
+    </section>
+
+    <section class="section-pad clock-section" aria-live="polite">
+      <div id="clockGrid" class="clock-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">數學來自生活，學習回到生活。<span>｜多時區時鐘</span></footer>
+  <script src="clock.js"></script>
+</body>
+</html>
