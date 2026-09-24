@@ -60,6 +60,7 @@ function updateClocks() {
 }
 
 let clockItems = [];
+let updateTimerId;
 
 if (clockGrid) {
   clockItems = TIME_ZONES.map((item) => {
@@ -76,11 +77,14 @@ if (clockGrid) {
 
   function scheduleNextUpdate() {
     const delay = 1000 - (Date.now() % 1000);
-    setTimeout(() => {
+    updateTimerId = setTimeout(() => {
       updateClocks();
       scheduleNextUpdate();
     }, delay);
   }
 
   scheduleNextUpdate();
+  window.addEventListener('pagehide', () => {
+    clearTimeout(updateTimerId);
+  }, { once: true });
 }
