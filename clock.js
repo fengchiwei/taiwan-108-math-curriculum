@@ -83,6 +83,7 @@ if (clockGrid) {
     }, delay);
   }
 
+  clearTimeout(updateTimerId);
   scheduleNextUpdate();
   window.addEventListener('pagehide', () => {
     clearTimeout(updateTimerId);
