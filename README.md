@@ -13,8 +13,10 @@
 ## 目前檔案
 
 - `index.html`：首頁與內容分流架構
+- `clock.html`：多時區數位時鐘頁面
 - `styles.css`：視覺樣式、可收合索引、響應式版面
 - `app.js`：搜尋、年級與主題篩選、索引收合
+- `clock.js`：多時區時鐘即時更新邏輯（每秒更新）
 
 ## 學生數學日記的預留原則
 
@@ -22,4 +24,4 @@
 
 ## 本地預覽
 
-直接用瀏覽器開啟 `index.html` 即可預覽。若要發布到 GitHub Pages，可在 Repository 的 **Settings → Pages** 選擇 `main` 分支與根目錄。
+直接用瀏覽器開啟 `index.html` 即可預覽，並可從首頁進入 `clock.html` 的多時區數位時鐘。若要發布到 GitHub Pages，可在 Repository 的 **Settings → Pages** 選擇 `main` 分支與根目錄。
