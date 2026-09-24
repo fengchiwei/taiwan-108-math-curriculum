@@ -59,23 +59,28 @@ function updateClocks() {
   });
 }
 
-const clockItems = TIME_ZONES.map((item) => {
-  const card = createClockCard(item);
-  clockGrid.appendChild(card);
-  return {
-    timeZone: item.timeZone,
-    dateNode: card.querySelector('[data-role="date"]'),
-    timeNode: card.querySelector('[data-role="time"]')
-  };
-});
+let clockItems = [];
 
-updateClocks();
-function scheduleNextUpdate() {
-  const delay = 1000 - (Date.now() % 1000);
-  setTimeout(() => {
-    updateClocks();
-    scheduleNextUpdate();
-  }, delay);
+if (clockGrid) {
+  clockItems = TIME_ZONES.map((item) => {
+    const card = createClockCard(item);
+    clockGrid.appendChild(card);
+    return {
+      timeZone: item.timeZone,
+      dateNode: card.querySelector('[data-role="date"]'),
+      timeNode: card.querySelector('[data-role="time"]')
+    };
+  });
+
+  updateClocks();
+
+  function scheduleNextUpdate() {
+    const delay = 1000 - (Date.now() % 1000);
+    setTimeout(() => {
+      updateClocks();
+      scheduleNextUpdate();
+    }, delay);
+  }
+
+  scheduleNextUpdate();
 }
-
-scheduleNextUpdate();
