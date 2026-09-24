@@ -45,18 +45,21 @@ function formatDateTime(currentTime, timeZone) {
 function updateClocks() {
   const now = new Date();
 
-  TIME_ZONES.forEach(({ timeZone }) => {
-    const card = clockGrid.querySelector(`[data-time-zone="${timeZone}"]`);
+  clockItems.forEach(({ timeZone, dateNode, timeNode }) => {
     const { dateText, timeText } = formatDateTime(now, timeZone);
-    card.querySelector('[data-role="date"]').textContent = dateText;
-    card.querySelector('[data-role="time"]').textContent = timeText;
+    dateNode.textContent = dateText;
+    timeNode.textContent = timeText;
   });
 }
 
-TIME_ZONES.forEach((item) => {
+const clockItems = TIME_ZONES.map((item) => {
   const card = createClockCard(item);
-  card.setAttribute('data-time-zone', item.timeZone);
   clockGrid.appendChild(card);
+  return {
+    timeZone: item.timeZone,
+    dateNode: card.querySelector('[data-role="date"]'),
+    timeNode: card.querySelector('[data-role="time"]')
+  };
 });
 
 updateClocks();
